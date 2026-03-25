@@ -16,7 +16,7 @@ title: "Chapter 4: Hollingsworth et al. (2022) — Marijuana Legalization and Dr
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.dta" "hollingsworth_et_al_2022.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.dta" "hollingsworth_et_al_2022.dta", replace
 use "hollingsworth_et_al_2022.dta", clear
 
 sum ln_mj_use_365 mm rm
@@ -84,7 +84,7 @@ library(dplyr)
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.RData"))
 
 df %>% select(ln_mj_use_365, mm, rm) %>% summary()
 table(df$mm)
@@ -120,7 +120,7 @@ Both treatments are binary and absorbing. `mm - rm` is always ≥ 0 — medical 
 import pandas as pd
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.parquet")
 
 print(df[["ln_mj_use_365", "mm", "rm"]].describe())
 print(df["mm"].value_counts().sort_index())
@@ -165,7 +165,7 @@ Both treatments are binary and absorbing. `mm - rm` is always ≥ 0 — medical 
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.dta" "hollingsworth_et_al_2022.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.dta" "hollingsworth_et_al_2022.dta", replace
 use "hollingsworth_et_al_2022.dta", clear
 
 did_multiplegt_dyn ln_mj_use_365 state year mm if rm==0, effects(3) placebo(3) cluster(state)
@@ -204,7 +204,7 @@ library(DIDmultiplegtDYN)
 library(polars)
 library(ggplot2)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.RData"))
 
 res_t13 <- did_multiplegt_dyn(df[df$rm==0,], "ln_mj_use_365", "state", "year", "mm",
   effects=3, placebo=3, cluster="state")
@@ -245,7 +245,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pl.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.parquet")
+df = pl.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.parquet")
 
 res_t13 = DidMultiplegtDyn(
     df=df.filter(pl.col("rm")==0),
@@ -292,7 +292,7 @@ Test of joint nullity of the placebos: p-value = 0.710604
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.dta" "hollingsworth_et_al_2022.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.dta" "hollingsworth_et_al_2022.dta", replace
 use "hollingsworth_et_al_2022.dta", clear
 
 egen fg1 = min(cond(mm == 1, year, .)), by(state)
@@ -332,7 +332,7 @@ library(DIDmultiplegtDYN)
 library(polars)
 library(ggplot2)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.RData"))
 
 df$fg1 <- ave(ifelse(df$mm==1, df$year, NA), df$state, FUN=function(x) min(x, na.rm=TRUE))
 
@@ -375,7 +375,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pl.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/hollingsworth_et_al_2022.parquet")
+df = pl.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/hollingsworth_et_al_2022.parquet")
 
 df = df.with_columns(
     pl.when(pl.col("mm")==1).then(pl.col("year")).otherwise(None)

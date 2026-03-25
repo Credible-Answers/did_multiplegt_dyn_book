@@ -16,7 +16,7 @@ title: "Chapter 2: East et al. (2023) — Prenatal Medicaid and Low Birth Weight
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.dta" "east_et_al_2023.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.dta" "east_et_al_2023.dta", replace
 use "east_et_al_2023.dta", clear
 tab newsimeli if dob_y_p == 1975
 ```
@@ -89,7 +89,7 @@ library(dplyr)
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.RData"))
 
 df %>%
   filter(dob_y_p == 1975) %>%
@@ -164,7 +164,7 @@ All 50 states have different values — confirming continuous treatment in perio
 import pandas as pd
 from did_multiplegt_dyn import did_multiplegt_dyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.parquet")
 
 tab = (df.loc[df["dob_y_p"] == 1975, "newsimeli"]
          .value_counts()
@@ -248,7 +248,7 @@ All 50 states have different values — confirming continuous treatment in perio
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.dta" "east_et_al_2023.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.dta" "east_et_al_2023.dta", replace
 use "east_et_al_2023.dta", clear
 
 global stcontrols stmarried stblack stother sthsdrop ///
@@ -297,7 +297,7 @@ Test of joint nullity of the placebos : p-value = .72098785
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.RData"))
 
 stcontrols <- c("stmarried", "stblack", "stother", "sthsdrop", "sthsgrad",
                 "stsomecoll", "pop0_4", "pop5_17", "pop18_24", "pop25_44",
@@ -355,7 +355,7 @@ Test of joint nullity of the placebos : p-value = 0.7210
 import pandas as pd
 from did_multiplegt_dyn import did_multiplegt_dyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.parquet")
 
 stcontrols = ["stmarried", "stblack", "stother", "sthsdrop", "sthsgrad",
               "stsomecoll", "pop0_4", "pop5_17", "pop18_24", "pop25_44",
@@ -418,7 +418,7 @@ Test of joint nullity of the placebos : p-value = 0.720988
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.dta" "east_et_al_2023.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.dta" "east_et_al_2023.dta", replace
 use "east_et_al_2023.dta", clear
 
 global stcontrols stmarried stblack stother sthsdrop ///
@@ -465,7 +465,7 @@ Test of equality of the effects       : p-value = .58100394
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.RData"))
 
 stcontrols <- c("stmarried", "stblack", "stother", "sthsdrop", "sthsgrad",
                 "stsomecoll", "pop0_4", "pop5_17", "pop18_24", "pop25_44",
@@ -536,7 +536,7 @@ Total 1.000 1.000 1.000 1.000 1.000
 import pandas as pd
 from did_multiplegt_dyn import did_multiplegt_dyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/east_et_al_2023.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/east_et_al_2023.parquet")
 
 stcontrols = ["stmarried", "stblack", "stother", "sthsdrop", "sthsgrad",
               "stsomecoll", "pop0_4", "pop5_17", "pop18_24", "pop25_44",
