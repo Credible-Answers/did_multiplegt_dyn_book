@@ -16,7 +16,7 @@ title: "Chapter 1: Deryugina (2017) — Hurricane Hits and Government Transfers"
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.dta" "deryugina_2017.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.dta" "deryugina_2017.dta", replace
 use "deryugina_2017.dta", clear
 egen total_hurricane = total(hurricane), by(county_fips)
 sum total_hurricane
@@ -39,7 +39,7 @@ library(dplyr)
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.RData"))
 
 df %>%
   group_by(county_fips) %>%
@@ -65,7 +65,7 @@ import pandas as pd
 import polars as pl
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.parquet")
 
 total = df.groupby("county_fips")["hurricane"].sum().reset_index(name="total_hurricane")
 print(total["total_hurricane"].describe())
@@ -93,7 +93,7 @@ All counties have `total_hurricane` ∈ {0, 1} — confirming the one-shot desig
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.dta" "deryugina_2017.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.dta" "deryugina_2017.dta", replace
 use "deryugina_2017.dta", clear
 
 did_multiplegt_dyn log_curr_trans_ind_gov_pc county_fips year hurricane, effects(11) placebo(11) cluster(county_fips)
@@ -148,7 +148,7 @@ library(DIDmultiplegtDYN)
 library(polars)
 library(ggplot2)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.RData"))
 
 res_t2 <- did_multiplegt_dyn(
   df        = df,
@@ -214,7 +214,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.parquet")
 
 res_t2 = DidMultiplegtDyn(
     df=pl.from_pandas(df),
@@ -278,7 +278,7 @@ Test of joint nullity of the placebos: p-value = 0.000002
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.dta" "deryugina_2017.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.dta" "deryugina_2017.dta", replace
 use "deryugina_2017.dta", clear
 
 local vars coastal land_area1970 log_pop1969 frac_young1969 frac_old1969 frac_black1969 log_wage_pc1969 emp_rate1969
@@ -339,7 +339,7 @@ library(DIDmultiplegtDYN)
 library(polars)
 library(ggplot2)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.RData"))
 
 vars <- c("coastal", "land_area1970", "log_pop1969", "frac_young1969",
           "frac_old1969", "frac_black1969", "log_wage_pc1969", "emp_rate1969")
@@ -411,7 +411,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/deryugina_2017.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/deryugina_2017.parquet")
 
 vars_list = ["coastal", "land_area1970", "log_pop1969", "frac_young1969",
              "frac_old1969", "frac_black1969", "log_wage_pc1969", "emp_rate1969"]

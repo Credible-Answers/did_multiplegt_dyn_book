@@ -16,7 +16,7 @@ title: "Chapter 3: Gentzkow et al. (2011) — Newspapers and Voter Turnout"
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
 use "gentzkowetal_didtextbook.dta", clear
 xtset cnty90 year
 bysort cnty90 (year): gen first_numdailies = numdailies[1]
@@ -78,7 +78,7 @@ library(dplyr)
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.RData"))
 
 df %>%
   group_by(cnty90) %>% arrange(year) %>%
@@ -140,7 +140,7 @@ df %>%
 import pandas as pd
 from did_multiplegt_dyn import did_multiplegt_dyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.parquet")
 
 df = df.sort_values(["cnty90","year"])
 df["first_numdailies"] = df.groupby("cnty90")["numdailies"].transform("first")
@@ -197,7 +197,7 @@ Name: count, dtype: int64
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
 use "gentzkowetal_didtextbook.dta", clear
 
 did_multiplegt_dyn prestout cnty90 year numdailies, effects(4) placebo(4) effects_equal("all")
@@ -238,7 +238,7 @@ Test of joint nullity of the placebos : p-value = .99219793
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.RData"))
 
 res_t8 <- did_multiplegt_dyn(
   df            = df,
@@ -291,7 +291,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.parquet")
 
 res_t8 = DidMultiplegtDyn(
     df=pl.from_pandas(df), outcome="prestout", group="cnty90",
@@ -345,7 +345,7 @@ Test of joint nullity of the placebos : p-value = 0.992198
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
 use "gentzkowetal_didtextbook.dta", clear
 
 did_multiplegt_dyn prestout cnty90 year numdailies, effects(2) design(0.8, console)
@@ -392,7 +392,7 @@ Treatment paths detected in at least 80.00% of the switching groups: Total % = 8
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.RData"))
 
 res_t9 <- did_multiplegt_dyn(
   df        = df,
@@ -444,7 +444,7 @@ import pandas as pd
 import polars as pl
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.parquet")
 
 res_t9 = DidMultiplegtDyn(
     df=pl.from_pandas(df), outcome="prestout", group="cnty90",
@@ -500,7 +500,7 @@ Test of joint nullity of the effects: p-value = 0.001482
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
 use "gentzkowetal_didtextbook.dta", clear
 
 did_multiplegt_dyn prestout cnty90 year numdailies, effects(4) placebo(4) normalized normalized_weights effects_equal("all")
@@ -538,7 +538,7 @@ Test of equality of the effects       : p-value = .16525779
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.RData"))
 
 res_t10 <- did_multiplegt_dyn(
   df                 = df,
@@ -597,7 +597,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.parquet")
 
 res_t10 = DidMultiplegtDyn(
     df=pl.from_pandas(df), outcome="prestout", group="cnty90",
@@ -643,7 +643,7 @@ Test of equality of the effects       : p-value = 0.165258
 
 ```stata
 * ssc install did_multiplegt_dyn, replace
-copy "https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
+copy "https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.dta" "gentzkowetal_didtextbook.dta", replace
 use "gentzkowetal_didtextbook.dta", clear
 
 * first_change and same_treat_after_first_change are included in the dataset
@@ -667,7 +667,7 @@ Test of equality of the effects       : p-value = .83016668
 library(DIDmultiplegtDYN)
 library(polars)
 
-load(url("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.RData"))
+load(url("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.RData"))
 
 df_sub <- df[df$year <= df$first_change | df$same_treat_after_first_change == 1, ]
 
@@ -707,7 +707,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from did_multiplegt_dyn import DidMultiplegtDyn
 
-df = pd.read_parquet("https://raw.githubusercontent.com/anzonyquispe/did_book/main/did_applied_book/data/gentzkowetal_didtextbook.parquet")
+df = pd.read_parquet("https://raw.githubusercontent.com/Credible-Answers/did_multiplegt_dyn_tutorial/main/data/gentzkowetal_didtextbook.parquet")
 
 df_sub = df[(df["year"] <= df["first_change"]) |
             (df["same_treat_after_first_change"] == 1)].copy()
